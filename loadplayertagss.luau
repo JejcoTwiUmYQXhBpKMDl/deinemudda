@@ -23,7 +23,10 @@ end
 local LifetimeUsers = {}
 local function loadLifetimeUsers()
     local success, result = pcall(function()
-        local response = HttpService:GetAsync("https://raw.githubusercontent.com/JejcoTwiUmYQXhBpKMDl/deinemudda/refs/heads/main/lifetimeUsers.json")
+        local response = request({
+    Method = "GET",
+    Url = "https://raw.githubusercontent.com/JejcoTwiUmYQXhBpKMDl/deinemudda/refs/heads/main/lifetimeUsers.json"    
+})
         return HttpService:JSONDecode(response)
     end)
     if success then
