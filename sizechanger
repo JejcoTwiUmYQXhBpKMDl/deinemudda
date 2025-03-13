@@ -1029,7 +1029,7 @@ local animationKeybinds = {}
 
 -- Function to save favorite animations to a file
 local function saveFavorites()
-    local success, encodedFavorites = pcall(HttpService.JSONEncode, favoriteAnimations)
+    local success, encodedFavorites = pcall(HttpService:JSONEncode(favoriteAnimations))
     if success then
         local saveSuccess, errorMessage = pcall(function()
             writefile("favorite_animations.json", encodedFavorites) -- Changed to writefile
@@ -1046,7 +1046,7 @@ end
 local function loadFavorites()
     local success, fileContent = pcall(readfile, "favorite_animations.json")
     if success then
-        local decodeSuccess, decodedFavorites = pcall(HttpService.JSONDecode, fileContent)
+        local decodeSuccess, decodedFavorites = pcall(HttpService:JSONDecode(fileContent))
         if decodeSuccess and typeof(decodedFavorites) == "table" then
             favoriteAnimations = decodedFavorites
             print("Favorites loaded successfully.")
@@ -1066,7 +1066,7 @@ local function saveKeybinds()
     for animName, keyCode in pairs(animationKeybinds) do
         keybindsToSave[animName] = keyCode.Name -- Save KeyCode as String
     end
-    local success, encodedKeybinds = pcall(HttpService.JSONEncode, keybindsToSave)
+    local success, encodedKeybinds = pcall(HttpService:JSONEncode(keybindsToSave))
     if success then
         local saveSuccess, errorMessage = pcall(function()
             writefile("animation_keybinds.json", encodedKeybinds) -- Changed to writefile and new filename
@@ -1083,7 +1083,7 @@ end
 local function loadKeybinds()
     local success, fileContent = pcall(readfile, "animation_keybinds.json")
     if success then
-        local decodeSuccess, decodedKeybinds = pcall(HttpService.JSONDecode, fileContent)
+        local decodeSuccess, decodedKeybinds = pcall(HttpService:JSONDecode(fileContent))
         if decodeSuccess and typeof(decodedKeybinds) == "table" then
             for animName, keyName in pairs(decodedKeybinds) do
                 animationKeybinds[animName] = Enum.KeyCode[keyName] -- Convert String back to KeyCode
@@ -1466,15 +1466,21 @@ local function playFakeAnimation(animationId)
     }
     fakeAnimStop = false
     fakeAnimRunning = true
-    game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
+local part = Instance.new("Part")
+part.Size = Vector3.new(2048,0.1,2048)
+part.Anchored = true
+part.Position = game.Players.LocalPlayer.Character.LowerTorso.Position + Vector3.new(0,-0.2,0)
+part.Transparency = 1
+part.Parent = workspace
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
     wait(0.1)
     for i,script in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
         if script:IsA("LocalScript") and script.Enabled then
             script.Enabled=false
         end
     end
-    game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
-
+game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+part:Destroy()
     spawn(function()
         while fakeAnimRunning do
             if fakeAnimStop then
