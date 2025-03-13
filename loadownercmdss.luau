@@ -647,7 +647,6 @@ elseif cmd == ".re" then
 		end
 
 	else
-		adminLog("Unknown command: " .. cmd)
 	end
 end
 
