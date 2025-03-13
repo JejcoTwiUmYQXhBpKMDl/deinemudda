@@ -1443,6 +1443,7 @@ local function playFakeAnimation(animationId)
     local rightLowerArm = character:WaitForChild("RightLowerArm")
     local rightLowerLeg = character:WaitForChild("RightLowerLeg")
     local rightUpperArm = character:WaitForChild("RightUpperArm")
+    local rightUpperLeg = character:WaitForChild("RightUpperLeg")
     local upperTorso = character:WaitForChild("UpperTorso")
 
     local Joints = {
@@ -1674,9 +1675,9 @@ local function createAnimationListGui(animTextBox)
                 animButtonData.KeybindButton.Visible = true -- Show Keybind Button
                 animButtonData.NameButton.Position = UDim2.new(0, 5, 0, yOffset)
                 animButtonData.PlayButton.Position = UDim2.new(0, 5, 0, yOffset + 30)
-                animButtonData.FavoriteButton.Position = UDim2.new(1, -125, 0, yOffset) -- Position Favorite button right of NameButton - Adjusted for wider Keybind button
-                animButtonData.StopButton.Position = UDim2.new(1, -85, 0, yOffset) -- Position Stop button right of Favorite Button - Adjusted for wider Keybind button
-                animButtonData.KeybindButton.Position = UDim2.new(1, -45, 0, yOffset) -- Position Keybind button right of Stop Button - Adjusted for wider Keybind button
+                animButtonData.FavoriteButton.Position = UDim2.new(1, -125, 0, yOffset) -- Position Favorite button right of NameButton - Adjusted for wider Keybind button, changed from `UDim2.new(1, -145, 0, yOffset)` to `UDim2.new(1, -125, 0, yOffset)`
+                animButtonData.StopButton.Position = UDim2.new(1, -85, 0, yOffset) -- Position Stop button right of Favorite Button - Adjusted for wider Keybind button, changed from `UDim2.new(1, -105, 0, yOffset)` to `UDim2.new(1, -85, 0, yOffset)`
+                animButtonData.KeybindButton.Position = UDim2.new(1, -45, 0, yOffset) -- Position Keybind button right of Stop Button - Adjusted for wider Keybind button, changed from `UDim2.new(1, -65, 0, yOffset)` to `UDim2.new(1, -45, 0, yOffset)`
                 yOffset = yOffset + 65
                 visibleButtonCount = visibleButtonCount + 1
 
@@ -1703,7 +1704,7 @@ local function createAnimationListGui(animTextBox)
     for animName, animId in pairs(BuiltInAnimationsR15) do
         local animNameButton = Instance.new("TextButton")
         animNameButton.Name = animName .. "NameButton"
-        animNameButton.Size = UDim2.new(1, -100, 0, 30) -- Wider button for title - Adjusted for wider Keybind button - Changed here from `UDim2.new(1, -80, 0, 30)` to `UDim2.new(1, -100, 0, 30)`
+        animNameButton.Size = UDim2.new(1, -80, 0, 30) -- Wider button for title - Adjusted for wider Keybind button - Changed here from `UDim2.new(1, -100, 0, 30)` to `UDim2.new(1, -80, 0, 30)`
         animNameButton.Position = UDim2.new(0, 5, 0, 5) -- Initial position, updated by search function
         animNameButton.Text = animName
         animNameButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -1746,7 +1747,7 @@ local function createAnimationListGui(animTextBox)
         local favoriteAnimButton = Instance.new("TextButton")
         favoriteAnimButton.Name = animName .. "FavoriteButton"
         favoriteAnimButton.Size = UDim2.new(0, 40, 0, 30) -- Smaller button for favorite
-        favoriteAnimButton.Position = UDim2.new(1, -125, 0, 5) -- Position Favorite button right of NameButton - Adjusted for wider Keybind button
+        favoriteAnimButton.Position = UDim2.new(1, -125, 0, 5) -- Position Favorite button right of NameButton - Adjusted for wider Keybind button, changed from `UDim2.new(1, -145, 0, 5)` to `UDim2.new(1, -125, 0, 5)`
         favoriteAnimButton.Text = favoriteAnimations[animName] and "★" or "☆" -- Filled star if favorite, otherwise empty
         favoriteAnimButton.TextColor3 = Color3.fromRGB(255, 255, 255)
         favoriteAnimButton.TextSize = 20
@@ -1773,7 +1774,7 @@ local function createAnimationListGui(animTextBox)
         local stopAnimButton = Instance.new("TextButton")
         stopAnimButton.Name = animName .. "StopButton"
         stopAnimButton.Size = UDim2.new(0, 40, 0, 30) -- Smaller button for stop
-        stopAnimButton.Position = UDim2.new(1, -85, 0, 5) -- Position Stop button right of Favorite Button - Adjusted for wider Keybind button
+        stopAnimButton.Position = UDim2.new(1, -85, 0, 5) -- Position Stop button right of Favorite Button - Adjusted for wider Keybind button, changed from `UDim2.new(1, -105, 0, 5)` to `UDim2.new(1, -85, 0, 5)`
         stopAnimButton.Text = "🛑"
         stopAnimButton.TextColor3 = Color3.fromRGB(255, 255, 255)
         stopAnimButton.TextSize = 16
@@ -1792,9 +1793,9 @@ local function createAnimationListGui(animTextBox)
         -- NEW: Keybind Animation Button
         local keybindAnimButton = Instance.new("TextButton")
         keybindAnimButton.Name = animName .. "KeybindButton"
-        keybindAnimButton.Size = UDim2.new(0, 40, 0, 30) -- Wider button for keybind - Increased width here
-        keybindAnimButton.Position = UDim2.new(1, -45, 0, 5) -- Position Keybind button right of Stop Button - Adjusted for wider Keybind button
-        keybindAnimButton.Text = "key" -- Initial text
+        keybindAnimButton.Size = UDim2.new(0, 40, 0, 30) -- Wider button for keybind - Increased width here, changed from `UDim2.new(0, 60, 0, 30)` to `UDim2.new(0, 40, 0, 30)`
+        keybindAnimButton.Position = UDim2.new(1, -45, 0, 5) -- Position Keybind button right of Stop Button - Adjusted for wider Keybind button, changed from `UDim2.new(1, -65, 0, 5)` to `UDim2.new(1, -45, 0, 5)`
+        keybindAnimButton.Text = "Set Keybind" -- Initial text
         keybindAnimButton.TextColor3 = Color3.fromRGB(255, 255, 255)
         keybindAnimButton.TextSize = 12
         keybindAnimButton.Font = Enum.Font.GothamMedium
@@ -1809,7 +1810,7 @@ local function createAnimationListGui(animTextBox)
             if keybindInputActive then return end -- Prevent overlapping keybind inputs
             keybindInputActive = true
             currentAnimationForKeybind = animName
-            keybindAnimButton.Text = "press" -- Prompt user to press a key
+            keybindAnimButton.Text = "Press" -- Prompt user to press a key
 
             local function inputBeganHandler(input, gameProcessedEvent)
                 if not keybindInputActive or currentAnimationForKeybind ~= animName then return end
