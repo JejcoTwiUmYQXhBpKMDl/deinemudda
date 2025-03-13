@@ -1794,7 +1794,7 @@ local function createAnimationListGui(animTextBox)
         keybindAnimButton.Name = animName .. "KeybindButton"
         keybindAnimButton.Size = UDim2.new(0, 40, 0, 30) -- Wider button for keybind - Increased width here
         keybindAnimButton.Position = UDim2.new(1, -45, 0, 5) -- Position Keybind button right of Stop Button - Adjusted for wider Keybind button
-        keybindAnimButton.Text = "keybind" -- Initial text
+        keybindAnimButton.Text = "key" -- Initial text
         keybindAnimButton.TextColor3 = Color3.fromRGB(255, 255, 255)
         keybindAnimButton.TextSize = 12
         keybindAnimButton.Font = Enum.Font.GothamMedium
