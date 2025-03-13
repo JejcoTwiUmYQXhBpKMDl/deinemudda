@@ -1525,7 +1525,7 @@ local function updateKeybindButtonText(animButtonData, animName)
     if keybind then
         animButtonData.KeybindButton.Text = keybind.Name -- Display KeyCode Name
     else
-        animButtonData.KeybindButton.Text = "Set Keybind"
+        animButtonData.KeybindButton.Text = "Key"
     end
 end
 
