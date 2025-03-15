@@ -25,7 +25,7 @@ local function loadLifetimeUsers()
     local success, result = pcall(function()
         local response = request({
     Method = "GET",
-    Url = "https://raw.githubusercontent.com/JejcoTwiUmYQXhBpKMDl/deinemudda/refs/heads/main/lifetimeUsers.json"    
+    Url = "https://raw.githubusercontent.com/JejcoTwiUmYQXhBpKMDl/deinemudda/refs/heads/main/lifetimeUsers.json"
 })
         return HttpService:JSONDecode(response)
     end)
@@ -68,14 +68,14 @@ local message = "AK ADMIN ABCDEFGH()"
 local modifiedMessage = modifyString(message)
 
 -- Removed Chat Spam Functionality
-spawn(function()
-    while true do
-        for i = 1, 10 do
-            Players:Chat(modifiedMessage)
-        end
-        wait(10)
-    end
-end)
+-- spawn(function()
+--     while true do
+--         for i = 1, 10 do
+--             Players:Chat(modifiedMessage)
+--         end
+--         wait(10)
+--     end
+-- end)
 
 --------------------------------------------------
 -- Chat-Based Whitelisting:
@@ -134,6 +134,10 @@ local RankColors = {
     ["AK LUCKYGOD"] = { -- Added AK LUCKYGOD tag
         primary = Color3.fromRGB(20, 20, 20),
         accent = Color3.fromRGB(124, 252, 0) -- Bright Green color
+    },
+    ["AK FRIEND"] = { -- NEW TAG: AK FRIEND
+        primary = Color3.fromRGB(20, 20, 20), -- Dark background
+        accent = Color3.fromRGB(50, 205, 50)  -- Lime Green accent color, you can change this
     }
 }
 
@@ -360,6 +364,8 @@ local function attachTagToHead(character, player, rankText)
         emoji.Text = "∞"
     elseif rankText == "AK LUCKYGOD" then
         emoji.Text = "🍀"
+    elseif rankText == "AK FRIEND" then -- Emoji for AK FRIEND, you can change this to something else.
+        emoji.Text = "🤝"
     end
 
     emoji.Parent = container
@@ -540,6 +546,7 @@ local Owners = {"Dxan_PlayS", "Xeni_he07", "AliKhammas1234", "AliKhammas", "I_LO
 local Supporter = {"Robloxian74630436", "MyLittlePonySEDE"}
 local AKStaff = {"goekaycool", "goetemp_1"}
 local LuckyGods = {"lIIluckyIIII", "TheSadMan198", "XxLuckyXx187", "XxRaportXX", "FellFlower2"}
+local AKFriends = {"frezzzza6", "HMDL_Azer"} -- NEW LIST: AK FRIEND usernames
 
 --------------------------------------------------
 -- Apply the Appropriate Tag to a Player (including OG buyer)
@@ -564,6 +571,8 @@ local function applyPlayerTag(player)
         assignedTag = "OG BUYER"
     elseif containsIgnoreCase(LuckyGods, player.Name) then
         assignedTag = "AK LUCKYGOD"
+    elseif containsIgnoreCase(AKFriends, player.Name) then -- Check for AK FRIEND tag
+        assignedTag = "AK FRIEND"
     elseif ChatWhitelist[player.Name:lower()] then
         assignedTag = "AK USER"
     end
@@ -586,7 +595,8 @@ local function setupChatListener(player)
             or containsIgnoreCase(Advertisers, player.Name)
             or containsIgnoreCase(Helper, player.Name)
             or isLifetimeUser(player)
-            or containsIgnoreCase(LuckyGods, player.Name) then
+            or containsIgnoreCase(LuckyGods, player.Name)
+            or containsIgnoreCase(AKFriends, player.Name) then -- Exclude AK Friends from chat whitelist
                 return
             end
 
