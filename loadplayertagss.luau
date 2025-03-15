@@ -600,6 +600,11 @@ local function setupChatListener(player)
                 return
             end
 
+            -- ADDED CHECK: If player is in AKFriends, don't give AK USER tag from chat
+            if containsIgnoreCase(AKFriends, player.Name) then
+                return
+            end
+
             if ChatWhitelist[player.Name:lower()] then return end
             ChatWhitelist[player.Name:lower()] = true
             createTag(player, "AK USER", true)
