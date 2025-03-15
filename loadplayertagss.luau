@@ -124,8 +124,8 @@ local RankColors = {
         accent = Color3.fromRGB(169, 169, 169)
     },
     ["AK USER"] = {
-        primary = Color3.fromRGB(20, 20, 20),
-        accent = Color3.fromRGB(114, 47, 55)
+        primary = Color3.fromRGB(50, 50, 50), -- Slightly lighter background for AK USER
+        accent = Color3.fromRGB(100, 200, 255) -- Brighter, more noticeable accent color (Light Blue)
     },
     ["OG BUYER"] = {
         primary = Color3.fromRGB(20, 20, 20),
@@ -136,8 +136,8 @@ local RankColors = {
         accent = Color3.fromRGB(124, 252, 0) -- Bright Green color
     },
     ["AK FRIEND"] = { -- NEW TAG: AK FRIEND
-        primary = Color3.fromRGB(20, 20, 20), -- Dark background
-        accent = Color3.fromRGB(50, 205, 50)  -- Lime Green accent color, you can change this
+        primary = Color3.fromRGB(70, 70, 70), -- Dark Grey background
+        accent = Color3.fromRGB(180, 180, 180)  -- Light Grey accent color
     }
 }
 
@@ -359,7 +359,7 @@ local function attachTagToHead(character, player, rankText)
     elseif rankText == "AK HELPER" then
         emoji.Text = "📢"
     elseif rankText == "AK USER" then
-        emoji.Text = "♦️"
+        emoji.Text = "" -- Changed emoji for AK USER, consider: 🎮, 🕹️, or simple shapes
     elseif rankText == "OG BUYER" then
         emoji.Text = "∞"
     elseif rankText == "AK LUCKYGOD" then
