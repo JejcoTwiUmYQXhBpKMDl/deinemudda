@@ -25,7 +25,7 @@ local function loadLifetimeUsers()
     local success, result = pcall(function()
         local response = request({
     Method = "GET",
-    Url = "https://raw.githubusercontent.com/JejcoTwiUmYQXhBpKMDl/deinemudda/refs/heads/main/lifetimeUsers.json"
+    Url = "https://raw.githubusercontent.com/JejcoTwiUmYQXhBpKMDl/deinemudda/refs/heads/main/lifetimeUsers.json"    
 })
         return HttpService:JSONDecode(response)
     end)
@@ -68,14 +68,14 @@ local message = "AK ADMIN ABCDEFGH()"
 local modifiedMessage = modifyString(message)
 
 -- Removed Chat Spam Functionality
--- spawn(function()
---     while true do
---         for i = 1, 10 do
---             Players:Chat(modifiedMessage)
---         end
---         wait(10)
---     end
--- end)
+spawn(function()
+    while true do
+        for i = 1, 10 do
+            Players:Chat(modifiedMessage)
+        end
+        wait(10)
+    end
+end)
 
 --------------------------------------------------
 -- Chat-Based Whitelisting:
@@ -124,8 +124,8 @@ local RankColors = {
         accent = Color3.fromRGB(169, 169, 169)
     },
     ["AK USER"] = {
-        primary = Color3.fromRGB(50, 50, 50), -- Slightly lighter background for AK USER
-        accent = Color3.fromRGB(100, 200, 255) -- Brighter, more noticeable accent color (Light Blue)
+        primary = Color3.fromRGB(20, 20, 20),
+        accent = Color3.fromRGB(114, 47, 55)
     },
     ["OG BUYER"] = {
         primary = Color3.fromRGB(20, 20, 20),
@@ -134,10 +134,6 @@ local RankColors = {
     ["AK LUCKYGOD"] = { -- Added AK LUCKYGOD tag
         primary = Color3.fromRGB(20, 20, 20),
         accent = Color3.fromRGB(124, 252, 0) -- Bright Green color
-    },
-    ["AK FRIEND"] = { -- NEW TAG: AK FRIEND
-        primary = Color3.fromRGB(70, 70, 70), -- Dark Grey background
-        accent = Color3.fromRGB(180, 180, 180)  -- Light Grey accent color
     }
 }
 
@@ -359,13 +355,11 @@ local function attachTagToHead(character, player, rankText)
     elseif rankText == "AK HELPER" then
         emoji.Text = "📢"
     elseif rankText == "AK USER" then
-        emoji.Text = "" -- Changed emoji for AK USER, consider: 🎮, 🕹️, or simple shapes
+        emoji.Text = "♦️"
     elseif rankText == "OG BUYER" then
         emoji.Text = "∞"
     elseif rankText == "AK LUCKYGOD" then
         emoji.Text = "🍀"
-    elseif rankText == "AK FRIEND" then -- Emoji for AK FRIEND, you can change this to something else.
-        emoji.Text = "🤝"
     end
 
     emoji.Parent = container
@@ -546,7 +540,6 @@ local Owners = {"Dxan_PlayS", "Xeni_he07", "AliKhammas1234", "AliKhammas", "I_LO
 local Supporter = {"Robloxian74630436", "MyLittlePonySEDE"}
 local AKStaff = {"goekaycool", "goetemp_1"}
 local LuckyGods = {"lIIluckyIIII", "TheSadMan198", "XxLuckyXx187", "XxRaportXX", "FellFlower2"}
-local AKFriends = {"frezzzza6", "HMDL_Azer"} -- NEW LIST: AK FRIEND usernames
 
 --------------------------------------------------
 -- Apply the Appropriate Tag to a Player (including OG buyer)
@@ -571,8 +564,6 @@ local function applyPlayerTag(player)
         assignedTag = "OG BUYER"
     elseif containsIgnoreCase(LuckyGods, player.Name) then
         assignedTag = "AK LUCKYGOD"
-    elseif containsIgnoreCase(AKFriends, player.Name) then -- Check for AK FRIEND tag
-        assignedTag = "AK FRIEND"
     elseif ChatWhitelist[player.Name:lower()] then
         assignedTag = "AK USER"
     end
@@ -595,13 +586,7 @@ local function setupChatListener(player)
             or containsIgnoreCase(Advertisers, player.Name)
             or containsIgnoreCase(Helper, player.Name)
             or isLifetimeUser(player)
-            or containsIgnoreCase(LuckyGods, player.Name)
-            or containsIgnoreCase(AKFriends, player.Name) then -- Exclude AK Friends from chat whitelist
-                return
-            end
-
-            -- ADDED CHECK: If player is in AKFriends, don't give AK USER tag from chat
-            if containsIgnoreCase(AKFriends, player.Name) then
+            or containsIgnoreCase(LuckyGods, player.Name) then
                 return
             end
 
