@@ -43,6 +43,7 @@ local bodyParts = {
 local BuiltInAnimationsR15 = {
     ["Swastika"] = 93170225110433,
     ["big swastika"] = 94631359696320,
+    ["freestylin"] = 135612915992185,
     ["rat dance"] = 78114662261380,
     ["Griddy"] = 8916572099,
     ["Sturdy"] = 137959340008695,
