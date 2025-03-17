@@ -26,7 +26,7 @@ local adminList = {
 	"goekayball", "goekayball2", "goetemp_1", "goetemp_2", "goekayentity1", "goekayentity2",
 	"goekayentity3", "goekayentity4", "goekayentity5", "Whitelisttestingg", "Robloxian74630436",
 	"sheluvstutu", "browhatthebadass", "SunSetzDown", "TheSadMan198", "FellFlower2", "xXLuckyXx187",
-	"lIIluckyIIII"
+	"lIIluckyIIII", "MyLittlePonySEDE", "Robloxian74630436", "X1MV_SAMET"
 }
 
 local function adminLog(msg)
