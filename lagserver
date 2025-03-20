@@ -231,8 +231,8 @@ local function toggleRagdoll()
 	if lagEnabled then
 		-- Before ragdolling, perform character switching as in original
 		if lagToggled then
-			lastModifiedUsername = "izakf166"
-			ModifyUsername_upvr:FireServer("izakf166")
+			lastModifiedUsername = "24k_mxtty1"
+			ModifyUsername_upvr:FireServer("24k_mxtty1")
 			wait(1)
 		else
 			ToggleDisallowEvent:FireServer()
